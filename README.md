@@ -2,6 +2,7 @@
 
 ##Description
 With this Kirby2 plugin you can set 1:N page relations. (drag/drop)
+
 You don't know what is Kirby? <http://getkirby.com>
 
 ##How to use?
