@@ -1,0 +1,48 @@
+.modal-content {
+    width:80%;
+    height: 90%;
+    overflow: scroll;
+}
+
+.pagerelation_left, .pagerelation_right {
+    float:left;
+    margin-top:15px;
+}
+
+#availableList {
+    border-right:1px solid #222;
+}
+
+#availableList, #activeList {
+    width: 200px;
+    height: 200px;
+    min-height: 20px;
+    list-style-type: none;
+    margin: 0;
+    padding: 5px 0 0 0;
+    margin-right: 10px;
+    overflow: auto;
+}
+
+#availableList li, #activeList li {
+    margin: 0 5px 5px 5px;
+    padding: 5px;
+    font-size: 13px;
+}
+#availableList li:hover, #activeList li:hover {
+    cursor: pointer;
+
+}
+.ui-sortable-helper {
+    border:2px solid #222222;
+    font-weight: bold;
+    background-color: #ffffff;
+}
+.ui-state-highlight {
+    border:2px dashed yellowgreen;
+    height: 40px;
+    display: block;
+}
+.pagerelation {
+    width: 100%;
+}
