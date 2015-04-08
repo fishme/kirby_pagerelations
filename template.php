@@ -7,15 +7,36 @@
  */
 
 
+if(c::get('plugin.pagerelation_template2icons')) {
+    $template_icon_mapping = c::get('plugin.pagerelation_template2icons');
+} else {
+    $template_icon_mapping = array('default' => 'fa-align-justify ');
+}
+
+//$content->intendedTemplate()
+
 ?>
 <div class="pagerelation">
     <div class="field-content"><input type="text" class="input" id="searchInavailableList" name="searchword" value="" placeholder="search..." /><div class="field-icon"><i class="icon fa fa-search"></i></div></div>
     <div class="pagerelation_left">
         <h2>Available (<span class="count"></span>)</h2>
+
         <ul id="availableList" class="connectedSortable">
             <?php
             foreach( $content_pages as $content) {
-                echo '<li class="ui-state-default" id="' .$content->uri() . '" title="'.$content->title()->html().'"><i class="icon fa fa-arrows"></i> '. $field->truncate($content->title()->html(),20,'...') . '</li>';
+                $is_current = '';
+                if($field->page()->slug() == $content->parent()->slug()) {
+                    $is_current = ' current_page';
+                }
+
+                if(array_key_exists($content->intendedTemplate(),$template_icon_mapping)) {
+                    $template_icon = $template_icon_mapping[$content->intendedTemplate()];
+                } else {
+                    $template_icon = $template_icon_mapping['default'];
+                }
+                $template_icon = ' <i class="icon template fa ' . $template_icon . '"></i>  ';
+
+                echo '<li class="ui-state-default' . $is_current . '" id="' . $content->uri() . '" title="' . $content->title()->html() . '"><i class="icon fa fa-arrows"></i> ' . $template_icon . $field->truncate($content->title()->html(),50,'...') . '</li>';
             }
             ?>
         </ul>
@@ -27,8 +48,20 @@
             if (is_array($field->pr_values) && count($field->pr_values)) {
                 foreach($field->pr_values as $item) {
                     $page_item = site()->page($item);
+                    $is_current = '';
+                    if($field->page()->slug() == $page_item->parent()->slug()) {
+                        $is_current = ' current_page';
+                    }
+
+                    if(array_key_exists($page_item->intendedTemplate(),$template_icon_mapping)) {
+                        $template_icon = $template_icon_mapping[$page_item->intendedTemplate()];
+                    } else {
+                        $template_icon = $template_icon_mapping['default'];
+                    }
+                    $template_icon = ' <i class="icon template fa ' . $template_icon . '"></i>  ';
+
                     if($page_item) {
-                        echo '<li class="ui-state-default" id="' .$page_item->uri() . '" title="'.$page_item->title()->html().'"><i class="icon fa fa-arrows"></i> '. $field->truncate($page_item->title()->html(),20,'...') . '</li>';
+                        echo '<li class="ui-state-default'. $is_current . '" id="' .$page_item->uri() . '" title="'.$page_item->title()->html().'"><i class="icon fa fa-arrows"></i> ' . $template_icon . $field->truncate($page_item->title()->html(),20,'...') . '</li>';
                     }
                 }
 
