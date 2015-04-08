@@ -12,9 +12,12 @@
 #availableList {
     border-right:1px solid #222;
 }
+#availableList .current_page, #activeList .current_page  {
+    color: green;
+}
 
 #availableList, #activeList {
-    width: 200px;
+    width: 400px;
     height: 200px;
     min-height: 20px;
     list-style-type: none;
@@ -45,4 +48,8 @@
 }
 .pagerelation {
     width: 100%;
+}
+
+.icon.template {
+    color:brown;
 }

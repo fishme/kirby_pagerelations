@@ -40,6 +40,28 @@ So I added hidden fields in the other blueprints called in this case "ARIB" and 
     type: pagerelations
 ```
 
+###Config
+
+Setup your own icon for each item depends on the template. 
+go to your config.php (/site/config/config.php)
+
+```php
+/*
+ * default => default Icon
+ * for icons look: http://fontawesome.io/icons/
+ * for the template name go in your blueprints folder
+ * example: home.php => home
+*/
+c::set('plugin.pagerelation_template2icons', array(
+    'default' => 'fa-align-justify ',
+    'content_arel' => 'fa-eye',
+    'content_video' => 'fa-video-camera',
+    'content_gallery' => 'fa-image',
+    'content_text' => 'fa-text-width',
+    'content_quiz' => 'fa-question'
+));
+```
+
 ##Todos
 there are some todos :)
 
